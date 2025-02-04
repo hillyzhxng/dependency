@@ -1,0 +1,21 @@
+name: depedency job
+on: push
+jobs:
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+    - run: date
+  windows:
+    runs-on: windows-latest
+    steps:
+    - run: date
+  dependent_job1:
+    needs: [ubuntu, windows]
+    runs-on: ubuntu-latest
+    steps:
+    - run: date
+  dependent_job2:
+    needs: [dependent_job1]
+    runs-on: ubuntu-latest
+    steps:
+    - run: pwd
